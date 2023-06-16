@@ -1,0 +1,55 @@
+.expand-div{
+    transform: translate(-5px, -5px);
+    transition: transform 1s ease-in;
+    transition: width 1s ease, height 1s ease;
+  }
+  .shrink-layout-div{
+    transform: translate(-5px, -5px);
+    transition: transform 2s ease-out;
+    transition: width 0.1s ease, height 0.1s ease;
+  }
+  .shrink-div{
+    transform: translate(-5px, -5px);
+    transition: transform 2s ease-out;
+    transition: width 0.1s ease, height 0.1s ease;
+  }
+
+  .flex-gap-20{
+    gap:20px;
+}
+.radio-icon-position{
+    position: relative;
+    bottom: 8px;
+    left:5px;
+}
+.user-card{
+    height: 8.5rem;
+}
+.user-card-27{
+    width:27rem;
+}
+.user-card-35{
+    width:35rem;
+}
+
+.user-profile{
+    border-radius: 7px;
+}
+
+
+@media screen and (max-width:450px) {
+    .user-card{
+        visibility: hidden;
+        display: none;
+    }
+    
+}
+ 
+
+  @media screen and (max-width:760px) {
+   .shrink-layout-div{
+    width:90vw;
+    margin-left: 10vw;
+   }
+  
+  }
