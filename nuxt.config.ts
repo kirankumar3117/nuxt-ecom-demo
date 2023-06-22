@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     'bootstrap/dist/css/bootstrap.min.css',
     '~/assets/css/custome.css'
   ],
- modules:[]
+  modules: ['@pinia/nuxt'],
  
   
 })

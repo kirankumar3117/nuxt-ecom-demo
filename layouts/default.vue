@@ -12,27 +12,28 @@
 </template>
 
 <script>
+import { useMainStore } from '~/store';
+
 
 
 
 export default{
 
     setup(){
-        const height=ref(1000)
         const loginComponent = useMain();
-        
+        const mainStore = useMainStore();
         return{
             loginComponent,
-            height
+            mainStore
         }
     },
-    created(){
-    },
-    mounted(){
-        
-        this.height=screen.height
-        
-    }
+    async created(){
+    var cookieValue = useCookie('token');
+    var token = cookieValue;
+    await this.mainStore.checkForUser(token.value);
+  }
+    
+   
 }
 </script>
 

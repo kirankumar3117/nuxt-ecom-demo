@@ -10,21 +10,16 @@
 </template>
 
 <script>
+import { userToken } from '~/lib/usertoken';
+
+
 export default{
 
    setup(){
       useHead({
          title:"shopify.in"
       });
-
-      
-     
-     
    },
-   created(){
-
-   }
-  
 }
 </script>
 

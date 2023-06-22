@@ -1,8 +1,14 @@
-
-import axios from "axios";
 import { userToken } from "../../lib/usertoken";
-export default defineEventHandler((event) => {
-  
-  const user=userToken()
-  return user
+
+export default defineEventHandler(async(e) => {
+  if (e.req.method === 'POST') {
+    try {
+      const body = await readRawBody(e)
+      const {id,password}=JSON.parse(body);
+      const token =await userToken(id,password);
+      return token
+    } catch (error) {
+      return `${error}`
+    }
+  }
 });

@@ -9,20 +9,50 @@
         </div>
       </div>
       <div style="width:90%;margin:50px auto;">
-       <form action="" @click.prevent="">
+       <form action="" @submit.prevent="handleUser">
         <label for="" class="text-start">Emial</label>
-        <input type="text" class="form-control "/>
+        <input type="text" class="form-control " placeholder="Enter your e-mail here .." v-model="userId"/>
+        <br/>
         <label>Password</label>
-        <input type="password" class="form-control"/>
+        <input type="password" class="form-control" placeholder="Enter your password here .." v-model="password"/>
         <div class="w-100 text-center">
 
-          <input type="submit" value="Login" class="btn btn-primary w-100 mt-5 text-center" style="background-color: #03A9F4;border: none;">
+          <input type="submit" value="Login" class="btn btn-primary w-100 mt-5 text-center" style="background-color: #03A9F4;border: none;" />
         </div>
        </form>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import {useMainStore} from "../../store/index"
+export default{
+  data(){
+    return {
+      userId:'',
+      password:''
+    }
+  },
+  setup(){
+   const store = useMainStore();
+   return{
+    store
+   }
+    
+  },
+  methods:{
+    async handleUser(){
+      this.store.handleUserLogin(this.userId,this.password);
+
+      
+    }
+    
+  },
+  
+ 
+}
+</script>
 
 <style>
 .loginMainComponent {

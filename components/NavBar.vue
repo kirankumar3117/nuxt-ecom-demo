@@ -37,15 +37,15 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       <ul class="nav-item my-1 mx-3 d-flex " id="navbarSupportedContent">
-        <!-- <span class="me-2">
+        <span class="me-2" v-if="mainStore.$state.userExists">
             Logout
-        </span> -->
+        </span>
         <div style="margin-top: -2px;">
 
-            <IconsUserLoginAndOut status="false" class=""/> 
+            <IconsUserLoginAndOut :status="mainStore.$state.userExists ? 'logout' : 'login'" class=""/> 
         </div>
         
-            <span class="mx-2 " role="button" @click="handleLoginComponent">
+            <span class="mx-2 " role="button" @click="handleLoginComponent" v-if="!mainStore.$state.userExists">
                 Login 
             </span>
       </ul>
@@ -57,17 +57,22 @@
 </template>
 
 <script>
+import { useMainStore } from '~/store';
+
 export default{
   setup(){
     const loginComponent = useMain();
+    const mainStore = useMainStore();
     return {
-      loginComponent
+      loginComponent,
+      mainStore
     }
   },
   methods:{
     handleLoginComponent(){
       this.loginComponent = true;
     }
-  }
+  },
+ 
 }
 </script>
