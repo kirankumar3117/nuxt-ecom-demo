@@ -71,7 +71,20 @@ export const useMainStore = defineStore('mainstore',{
 
         
     },
+   
     getters:{
-       
+       filterData(){
+            if(this.search === ''){
+                return this.data
+            }
+
+            const data= this.data.filter((e)=>{
+                return e.title.includes(this.search) ? e : ''
+            });
+            if(!data.length){
+                return this.data
+            }
+            return data
+       }
     }
 })

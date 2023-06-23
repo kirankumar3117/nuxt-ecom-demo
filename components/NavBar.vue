@@ -64,7 +64,10 @@ export default{
   setup(){
     const mainStore = useMainStore();
     const search = userSearch();
-    
+    watch(search,()=>{
+      mainStore.$state.search=search;
+      mainStore.filterData()
+    })
     return {
       mainStore,
       search

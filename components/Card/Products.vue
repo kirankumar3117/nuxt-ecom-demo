@@ -18,7 +18,7 @@
         </div>
         <hr />
         <div style="display:flex;flex-wrap:wrap;gap:50px;width:90%;justify-content:space-around" class="p-10 mx-5">
-            <div v-for="product in mainStore.$state.data" :key="product.id" class="mt-5">
+            <div v-for="product in mainStore.filterData" :key="product.id" class="mt-5">
 
                 <div class="card cardProduct">
                     <div class="position-absolute w-100" style="text-align:center;margin-left:253px;">
@@ -83,12 +83,20 @@ export default {
         const data = await $fetch("/api/products"); 
         const mainStore=useMainStore()
         mainStore.$state.data=data;
+       
+        
         return {
             
-            mainStore
+            mainStore,
         }
 
+
     },
+    computed:{
+        products(){
+            return this.mainStore.filterData
+        }
+    }
   
     
 }
