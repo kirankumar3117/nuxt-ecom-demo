@@ -1,3 +1,3 @@
 
 
-export const useMain =()=> useState(()=>false)
+export const userSearch =()=> useState(()=>'')

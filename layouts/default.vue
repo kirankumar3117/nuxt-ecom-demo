@@ -1,8 +1,8 @@
 <template>
     <div>
-        <UserLogin v-if="loginComponent"/>
+        <UserLogin v-if="mainStore.$state.showLoginComponent"/>
 
-        <div class="bg-light" :class="loginComponent ? 'fixedWindow' : ''" >
+        <div class="bg-light" :class="mainStore.$state.showLoginComponent ? 'fixedWindow' : ''" >
             <!-- <slot/>
             <NavBar/> -->
             <slot/>
@@ -20,10 +20,9 @@ import { useMainStore } from '~/store';
 export default{
 
     setup(){
-        const loginComponent = useMain();
         const mainStore = useMainStore();
         return{
-            loginComponent,
+            
             mainStore
         }
     },

@@ -1,30 +1,41 @@
 import { defineStore } from "pinia";
 
-
 export const useMainStore = defineStore('mainstore',{
     state:()=>({
         token:null,
-        userExists:null
+        userExists:null,
+        showLoginComponent:false,
+        search:'',
+        data:[]
     }),
     actions:{
         async handleUserLogin(userId,password){
 
-          
-            const data = await useFetch(`/api/getusertoken`, {
-                method: 'POST',
-                headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    id:userId,
-                    password:password
-                }),
-              });
-            
-              this.token=data.data._value;
+            try{
 
-                document.cookie= `token=${this.token}`
+                const data = await useFetch(`/api/getusertoken`, {
+                    method: 'POST',
+                    headers: {
+                      Accept: 'application/json',
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id:userId,
+                        password:password
+                    }),
+                  });
+                
+                  this.token=data.data.value;
+                  
+                    document.cookie= `token=${this.token}`;
+                  this.checkForUser(this.token);
+                  this.showLoginComponent=false;
+
+            }catch(err){
+                this.reset();
+            }
+
+               
         },
         async checkForUser(cookieValue){
             if(!cookieValue){
@@ -49,11 +60,18 @@ export const useMainStore = defineStore('mainstore',{
             
 
             
-        }
+        },
+        reset(){
+            this.token=null;
+            this.userExists=null
+        },
+
+        
+        
 
         
     },
     getters:{
-        
+       
     }
 })

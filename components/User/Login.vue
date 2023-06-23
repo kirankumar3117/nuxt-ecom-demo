@@ -1,6 +1,7 @@
 <template>
   <div class="loginMainComponent">
     <div class="mainContainer card">
+      <IconsCrossCircle/>
       <div class="loginHead">
 
         <Logo/>
@@ -44,8 +45,6 @@ export default{
   methods:{
     async handleUser(){
       this.store.handleUserLogin(this.userId,this.password);
-
-      
     }
     
   },

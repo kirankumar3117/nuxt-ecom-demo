@@ -33,11 +33,11 @@
       </ul>
       
     <form class="d-flex">
-        <input class="form-control me-2 bg-light" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2 bg-light" type="search" placeholder="Search" aria-label="Search" v-model="search">
+        <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
       </form>
-      <ul class="nav-item my-1 mx-3 d-flex " id="navbarSupportedContent">
-        <span class="me-2" v-if="mainStore.$state.userExists">
+      <ul class="nav-item my-1 mx-3 d-flex " id="navbarSupportedContent" style="cursor:pointer">
+        <span class="me-2" v-if="mainStore.$state.userExists" @click="handleUserLogout">
             Logout
         </span>
         <div style="margin-top: -2px;">
@@ -57,20 +57,28 @@
 </template>
 
 <script>
+import { userSearch } from '~/composables/states';
 import { useMainStore } from '~/store';
 
 export default{
   setup(){
-    const loginComponent = useMain();
     const mainStore = useMainStore();
+    const search = userSearch();
+    
     return {
-      loginComponent,
-      mainStore
+      mainStore,
+      search
     }
   },
   methods:{
     handleLoginComponent(){
-      this.loginComponent = true;
+      this.mainStore.$state.showLoginComponent=true;
+      console.log(this.search)
+    },
+    handleUserLogout(){
+      document.cookie='';
+      this.mainStore.$state.userExists=false;
+      this.mainStore.$state.showLoginComponent=true
     }
   },
  

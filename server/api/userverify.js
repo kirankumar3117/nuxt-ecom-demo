@@ -6,7 +6,7 @@ export default defineEventHandler(async(e) => {
       const body = await readRawBody(e)
       const {token}=JSON.parse(body);
       const verify =await verifyUser(token);
-      console.log(verify.message)
+      // console.log(verify.message)
       return verify.message
     } catch (error) {
       return `${error}`

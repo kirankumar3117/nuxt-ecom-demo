@@ -20,6 +20,9 @@ export default{
          title:"shopify.in"
       });
    },
+   created(){
+      console.log(process.env.NUXT_BASE_URL)
+   }
 }
 </script>
 
