@@ -28,7 +28,7 @@
                             <IconsWishList class="position-relative" style="top:5px;margin-left:8px;cursor:pointer"/>
                         </div>
                     </div>
-                    <img :src="product.image" class="card-img-top" alt="..." width="100px" height="300px" />
+                    <LazyCardProductImage :image="product.image"/>
                     <div class="card-body bg-light">
                         <h5 class="card-title w-90"
                             style=" width: 220px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{
